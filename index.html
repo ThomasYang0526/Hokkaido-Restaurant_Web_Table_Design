@@ -71,11 +71,38 @@
             top: 0;
             z-index: 10;
         }
+        
+        /* Adjusted column widths for 7 columns */
+        th:nth-child(1) { width: 18%; } /* 餐廳名稱 */
+        th:nth-child(2) { width: 10%; } /* 位置 */
+        th:nth-child(3) { width: 12%; } /* 預計時間 */
+        th:nth-child(4) { width: 30%; } /* 主要料理 */
+        th:nth-child(5) { width: 10%; } /* 價位 */
+        th:nth-child(6) { width: 12%; } /* 分類 */
+        th:nth-child(7) { width: 8%; }  /* 影片連結 */
 
         td {
             padding: 12px;
             border-bottom: 1px solid #f0f0f0;
             vertical-align: top;
+        }
+        
+        .city-group-header {
+            background: linear-gradient(135deg, #ffda79 0%, #ffb142 100%);
+            color: #533400;
+            font-weight: bold;
+            font-size: 1.4em;
+            padding: 25px 20px;
+            text-align: center;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ff9f1a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .city-group-header:hover {
+             background: linear-gradient(135deg, #ffda79 0%, #ffb142 100%);
         }
 
         tr:nth-child(even) {
@@ -85,13 +112,22 @@
         tr:hover {
             background-color: #e8f4ff;
             transform: scale(1.01);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .restaurant-name {
             font-weight: bold;
             color: #2c3e50;
             font-size: 1.1em;
+        }
+        
+        .restaurant-name a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        .restaurant-name a:hover {
+            color: #007bff;
+            text-decoration: underline;
         }
 
         .location {
@@ -119,50 +155,15 @@
             margin: 2px;
         }
 
-        .category.japanese {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .category.seafood {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-
-        .category.dessert {
-            background: #fce4ec;
-            color: #ad1457;
-        }
-
-        .category.camping {
-            background: #e8f5e8;
-            color: #2e7d32;
-        }
-
-        .category.hotel {
-            background: #fff3e0;
-            color: #ef6c00;
-        }
-
-        .category.cafe {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        .category.buffet {
-            background: #fff8e1;
-            color: #f57c00;
-        }
-
-        .category.ramen {
-            background: #ffebee;
-            color: #d32f2f;
-        }
-
-        .category.western {
-            background: #e1f5fe;
-            color: #0277bd;
-        }
+        .category.japanese { background: #ffebee; color: #c62828; }
+        .category.seafood { background: #e3f2fd; color: #1565c0; }
+        .category.dessert { background: #fce4ec; color: #ad1457; }
+        .category.camping { background: #e8f5e8; color: #2e7d32; }
+        .category.hotel { background: #fff3e0; color: #ef6c00; }
+        .category.cafe { background: #f3e5f5; color: #7b1fa2; }
+        .category.buffet { background: #fff8e1; color: #f57c00; }
+        .category.ramen { background: #ffebee; color: #d32f2f; }
+        .category.western { background: #e1f5fe; color: #0277bd; }
 
         .youtube-link {
             color: #ff4444;
@@ -194,14 +195,15 @@
             .header h1 {
                 font-size: 2em;
             }
-            
             th, td {
                 padding: 8px;
                 font-size: 0.9em;
             }
-            
             .table-container {
                 padding: 10px;
+            }
+            .city-group-header {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -215,7 +217,7 @@
 
         <div class="stats">
             <h3>📊 統計資訊</h3>
-            <p>收錄餐廳數量：75家 | 涵蓋地區：札幌、小樽、函館、旭川等多個城市</p>
+            <p>收錄餐廳數量：34家 | 涵蓋地區：札幌、小樽、函館、旭川等多個城市</p>
         </div>
 
         <div class="table-container">
@@ -224,6 +226,7 @@
                     <tr>
                         <th>餐廳名稱</th>
                         <th>位置</th>
+                        <th>從札幌開車預計時間</th>
                         <th>主要料理</th>
                         <th>價位</th>
                         <th>分類</th>
@@ -231,233 +234,139 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="restaurant-name">定山溪自然之村料理棟</td>
-                        <td class="location">定山溪</td>
-                        <td class="food-description">露營區石窯料理，西班牙燉飯（使用大型蝦子和厚岸蛤蜊）</td>
-                        <td class="price">露營區費用包含</td>
-                        <td><span class="category camping">自炊/露營</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=-BzvkK6e9sQ" class="youtube-link">觀看影片</a></td>
+                    <!-- 札幌市 (Sapporo) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 札幌市</th>
                     </tr>
                     <tr>
                         <td class="restaurant-name">雜黃藥妝</td>
                         <td class="location">札幌市狸小路五丁目</td>
+                        <td>市區內</td>
                         <td class="food-description">薯條棒、日式炒麵便當、碳酸水</td>
                         <td class="price">118-148日幣</td>
                         <td><span class="category dessert">零食/飲料</span></td>
                         <td><a href="https://www.youtube.com/watch?v=-E-KlbTRKTw" class="youtube-link">觀看影片</a></td>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">伊達市居酒屋</td>
-                        <td class="location">伊達市</td>
-                        <td class="food-description">噴火灣海鮮生魚片：牡丹蝦、北海道鮑魚、北寄貝</td>
-                        <td class="price">非常划算</td>
-                        <td><span class="category seafood">日本料理/海鮮</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=08dP1pr7a2M" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">伊達溫泉飯店餐廳</td>
-                        <td class="location">伊達市</td>
-                        <td class="food-description">日式早餐定食：鮭魚、醃漬小菜、蛋、味噌湯、納豆</td>
-                        <td class="price">15,000多日幣（含住宿）</td>
-                        <td><span class="category hotel">飯店餐點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=08dP1pr7a2M" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">洞爺湖北岸湖景餐廳</td>
-                        <td class="location">洞爺湖北岸</td>
-                        <td class="food-description">青紫丼：軟嫩雞肉、蛋、蔥、香菇</td>
-                        <td class="price">900日幣</td>
-                        <td><span class="category japanese">定食</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=1fvYRJR92nw" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">Lekko Hirofong</td>
-                        <td class="location">洞爺湖溫泉街</td>
-                        <td class="food-description">冰淇淋（抹茶、蔓越莓口味）</td>
-                        <td class="price">價格未提及</td>
-                        <td><span class="category dessert">甜點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=1fvYRJR92nw" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">余市燒肉吃到飽</td>
-                        <td class="location">余市</td>
-                        <td class="food-description">自助式燒肉吃到飽</td>
-                        <td class="price">1,650日幣</td>
-                        <td><span class="category buffet">自助餐</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=1nLxwK36cJ0" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">定山溪溫泉街甜點店</td>
-                        <td class="location">定山溪溫泉街</td>
-                        <td class="food-description">抹茶冰淇淋、草莓櫻桃冰淇淋</td>
-                        <td class="price">價格未提及</td>
-                        <td><span class="category dessert">甜點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=2q-EO_ZFMzo" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">日高溫泉飯店餐廳</td>
-                        <td class="location">日高地區</td>
-                        <td class="food-description">懷石料理：成吉思汗烤肉、蔬菜肉捲、鮭魚沙拉、茶碗蒸</td>
-                        <td class="price">11,000日幣/人（含住宿）</td>
-                        <td><span class="category hotel">飯店餐點/日本料理</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=3SmH-u8OHBI" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">Miyamoto</td>
-                        <td class="location">安平町</td>
-                        <td class="food-description">夢明豚豬排套餐、黑醋醬漢堡排</td>
-                        <td class="price">1,540日幣</td>
-                        <td><span class="category japanese">定食</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=4wdn6zGW8fQ" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">惠庭市冰淇淋店</td>
-                        <td class="location">惠庭市</td>
-                        <td class="food-description">冰淇淋漢堡、鬆餅套餐（藍莓、卡士達口味）</td>
-                        <td class="price">600-725日幣</td>
-                        <td><span class="category dessert">甜點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=4wdn6zGW8fQ" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">魚津食堂</td>
-                        <td class="location">苫小牧</td>
-                        <td class="food-description">任性丼（自選3-4種海鮮）：鮪魚、鮭魚卵、海膽、扇貝</td>
-                        <td class="price">2,300-2,500日幣</td>
-                        <td><span class="category seafood">海鮮丼</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=5D0Ha5QD85I" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">太郎山拉麵</td>
-                        <td class="location">濱小清水道之驛</td>
-                        <td class="food-description">辣味拉麵，湯頭濃郁，麵條Q彈</td>
-                        <td class="price">價格未提及</td>
-                        <td><span class="category ramen">拉麵</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=96TlNMevMF8" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">Rinka (林化)</td>
-                        <td class="location">積丹半島島武意海岸</td>
-                        <td class="food-description">海膽丼（紫海膽、馬糞海膽）、鮑魚、烤魚定食</td>
-                        <td class="price">800-8,000日幣</td>
-                        <td><span class="category seafood">海鮮丼/定食</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=9k-lGmVNA-A" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">LeTAO</td>
-                        <td class="location">積丹半島</td>
-                        <td class="food-description">起司蛋糕，口感綿密絲滑</td>
-                        <td class="price">1,500日幣</td>
-                        <td><span class="category dessert">甜點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=9k-lGmVNA-A" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
                         <td class="restaurant-name">札幌大丸百貨自助餐</td>
                         <td class="location">札幌市大丸百貨</td>
+                        <td>市區內</td>
                         <td class="food-description">台灣美食自助餐：滷肉飯、小籠包、炒飯、台式剉冰</td>
                         <td class="price">1,700-2,700日幣</td>
                         <td><span class="category buffet">自助餐</span></td>
                         <td><a href="https://www.youtube.com/watch?v=AbuhBCi1eC8" class="youtube-link">觀看影片</a></td>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">後田露營區海鮮攤</td>
-                        <td class="location">後田露營區旁</td>
-                        <td class="food-description">活扇貝、馬糞海膽、北寄貝</td>
-                        <td class="price">280-1,080日幣</td>
-                        <td><span class="category seafood">生鮮海產</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=BXIOD1tU148" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">壽司郎</td>
+                        <td class="location">札幌市</td>
+                        <td>市區內</td>
+                        <td class="food-description">迴轉壽司：本鮪魚、三文魚、海膽、鮭魚卵</td>
+                        <td class="price">100-715日幣/盤</td>
+                        <td><span class="category japanese">壽司</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=v_ivEgCoZXc" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 小樽市 (Otaru-shi) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 小樽市</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">喜多方溫泉飯店</td>
-                        <td class="location">喜多方</td>
-                        <td class="food-description">兒童自助餐：剉冰、蛋糕；早餐：手作漢堡、拉麵</td>
-                        <td class="price">31,000日幣（含住宿）</td>
-                        <td><span class="category hotel">飯店餐點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=DWRChGUDUL0" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">小樽三角市場</td>
+                        <td class="location">小樽車站旁</td>
+                        <td>約 45 分鐘</td>
+                        <td class="food-description">海膽丼、ANA丼、三色丼、帝王蟹、毛蟹</td>
+                        <td class="price">2,000-30,000日幣</td>
+                        <td><span class="category seafood">海鮮市場</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=tYYe8w5_iP0" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 千歲市 (Chitose-shi) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 千歲市</th>
+                    </tr>
+                     <tr>
+                        <td class="restaurant-name">森本蛋糕屋</td>
+                        <td class="location">千歲</td>
+                        <td>約 45 分鐘</td>
+                        <td class="food-description">紅豆銅鑼燒、雪珠、哈斯卡普果汁、草莓奶昔</td>
+                        <td class="price">150-500日幣</td>
+                        <td><span class="category dessert">甜點/麵包</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=vgj5UAjz09o" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 定山溪 (Jozankei) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 定山溪</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">織物湖畔餐廳</td>
-                        <td class="location">織物湖</td>
-                        <td class="food-description">烤鮭魚串、炸鮭魚、鮭魚卵丼（湖景座位）</td>
-                        <td class="price">2,300日幣</td>
-                        <td><span class="category japanese">日本料理</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=F2cCZ-4yzlM" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">定山溪自然之村料理棟</td>
+                        <td class="location">定山溪</td>
+                        <td>約 50 分鐘</td>
+                        <td class="food-description">露營區石窯料理，西班牙燉飯（使用大型蝦子和厚岸蛤蜊）</td>
+                        <td class="price">露營區費用包含</td>
+                        <td><span class="category camping">自炊/露營</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=-BzvkK6e9sQ" class="youtube-link">觀看影片</a></td>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">洞爺湖北岸越南餐廳</td>
-                        <td class="location">洞爺湖北岸</td>
-                        <td class="food-description">越南雞肉河粉、炸春捲、台灣滷肉飯</td>
+                        <td class="restaurant-name">定山溪溫泉街甜點店</td>
+                        <td class="location">定山溪溫泉街</td>
+                        <td>約 50 分鐘</td>
+                        <td class="food-description">抹茶冰淇淋、草莓櫻桃冰淇淋</td>
                         <td class="price">價格未提及</td>
-                        <td><span class="category western">亞洲料理</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=FygtGXI6UsE" class="youtube-link">觀看影片</a></td>
+                        <td><span class="category dessert">甜點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=2q-EO_ZFMzo" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 惠庭市 (Eniwa-shi) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 惠庭市</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">二世谷大阪燒店</td>
-                        <td class="location">二世谷</td>
-                        <td class="food-description">白老和牛牛排、明太子玉子燒、納豆大阪燒</td>
-                        <td class="price">600日幣起</td>
-                        <td><span class="category japanese">日本料理</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=GQOedlTAQBk" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">惠庭市冰淇淋店</td>
+                        <td class="location">惠庭市</td>
+                        <td>約 35 分鐘</td>
+                        <td class="food-description">冰淇淋漢堡、鬆餅套餐（藍莓、卡士達口味）</td>
+                        <td class="price">600-725日幣</td>
+                        <td><span class="category dessert">甜點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=4wdn6zGW8fQ" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 安平町 (Abira-cho) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 安平町</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">東川町貝果店</td>
-                        <td class="location">東川町</td>
-                        <td class="food-description">咖啡巧克力貝果，餡料濃郁</td>
-                        <td class="price">價格未提及</td>
-                        <td><span class="category dessert">麵包/甜點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=H2JNCd2Jp0c" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">Miyamoto</td>
+                        <td class="location">安平町</td>
+                        <td>約 1 小時</td>
+                        <td class="food-description">夢明豚豬排套餐、黑醋醬漢堡排</td>
+                        <td class="price">1,540日幣</td>
+                        <td><span class="category japanese">定食</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=4wdn6zGW8fQ" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 苫小牧 (Tomakomai) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 苫小牧</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">東川町咖啡店</td>
-                        <td class="location">東川町</td>
-                        <td class="food-description">現煮咖啡、蘋果汁、葡萄汁</td>
-                        <td class="price">500日幣</td>
-                        <td><span class="category cafe">咖啡廳</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=H2JNCd2Jp0c" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">魚津食堂</td>
+                        <td class="location">苫小牧</td>
+                        <td>約 1 小時 10 分鐘</td>
+                        <td class="food-description">任性丼（自選3-4種海鮮）：鮪魚、鮭魚卵、海膽、扇貝</td>
+                        <td class="price">2,300-2,500日幣</td>
+                        <td><span class="category seafood">海鮮丼</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=5D0Ha5QD85I" class="youtube-link">觀看影片</a></td>
                     </tr>
-                    <tr>
-                        <td class="restaurant-name">味覺園燒肉店</td>
-                        <td class="location">北見市</td>
-                        <td class="food-description">燒肉吃到飽，多種肉品、扇貝、冰淇淋</td>
-                        <td class="price">2,600-3,700日幣</td>
-                        <td><span class="category buffet">燒肉/自助餐</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=S_kPs3wd-nw" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">Kaneko Cafe</td>
-                        <td class="location">上富良野</td>
-                        <td class="food-description">炭烤豬排、鮪魚三明治、雞肉咖哩、可麗餅</td>
-                        <td class="price">價格未提及</td>
-                        <td><span class="category cafe">定食/咖啡廳</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=L2uQ7-YpX0Y" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">旭川火車站飯店</td>
-                        <td class="location">旭川</td>
-                        <td class="food-description">日式早餐：納豆、生雞蛋、海鮮、拉麵、冰淇淋</td>
-                        <td class="price">9,000日幣（含住宿）</td>
-                        <td><span class="category hotel">飯店餐點</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">旭川當地居酒屋</td>
-                        <td class="location">旭川市五七小路</td>
-                        <td class="food-description">新子燒（烤雞腿）、雞腸、豬肉醃製燒烤</td>
-                        <td class="price">500-1,200日幣</td>
-                        <td><span class="category japanese">居酒屋/燒烤</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
-                    </tr>
-                    <tr>
-                        <td class="restaurant-name">梅光軒拉麵總店</td>
-                        <td class="location">旭川市</td>
-                        <td class="food-description">味噌拉麵，湯頭微辣微甜，麵條Q嫩</td>
-                        <td class="price">600日幣</td>
-                        <td><span class="category ramen">拉麵</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
+                    
+                    <!-- 白老町 (Shiraoi-cho) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 白老町</th>
                     </tr>
                     <tr>
                         <td class="restaurant-name">白老町毛蟹餐廳</td>
                         <td class="location">白老町</td>
+                        <td>約 1 小時 15 分鐘</td>
                         <td class="food-description">北海道產活毛蟹，肉質軟嫩，蟹膏濃郁</td>
                         <td class="price">6,500日幣（650克）</td>
                         <td><span class="category seafood">海鮮料理</span></td>
@@ -466,37 +375,284 @@
                     <tr>
                         <td class="restaurant-name">白老黑毛和牛牧場</td>
                         <td class="location">白老町牧場內</td>
+                        <td>約 1 小時 15 分鐘</td>
                         <td class="food-description">和牛漢堡、蜂蜜起司馬鈴薯</td>
                         <td class="price">1,000-2,100日幣</td>
                         <td><span class="category western">漢堡/西式</span></td>
                         <td><a href="https://www.youtube.com/watch?v=S_kPs3wd-nw" class="youtube-link">觀看影片</a></td>
                     </tr>
-                    <tr>
-                        <td class="restaurant-name">小樽三角市場</td>
-                        <td class="location">小樽車站旁</td>
-                        <td class="food-description">海膽丼、ANA丼、三色丼、帝王蟹、毛蟹</td>
-                        <td class="price">2,000-30,000日幣</td>
-                        <td><span class="category seafood">海鮮市場</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=tYYe8w5_iP0" class="youtube-link">觀看影片</a></td>
+                    
+                    <!-- 織物湖 (Shikotsu-ko) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 織物湖 (支笏湖)</th>
                     </tr>
                     <tr>
-                        <td class="restaurant-name">壽司郎</td>
-                        <td class="location">札幌市</td>
-                        <td class="food-description">迴轉壽司：本鮪魚、三文魚、海膽、鮭魚卵</td>
-                        <td class="price">100-715日幣/盤</td>
-                        <td><span class="category japanese">壽司</span></td>
-                        <td><a href="https://www.youtube.com/watch?v=v_ivEgCoZXc" class="youtube-link">觀看影片</a></td>
+                        <td class="restaurant-name">織物湖畔餐廳</td>
+                        <td class="location">織物湖</td>
+                        <td>約 1 小時 15 分鐘</td>
+                        <td class="food-description">烤鮭魚串、炸鮭魚、鮭魚卵丼（湖景座位）</td>
+                        <td class="price">2,300日幣</td>
+                        <td><span class="category japanese">日本料理</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=F2cCZ-4yzlM" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 余市 (Yoichi) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 余市</th>
                     </tr>
                     <tr>
+                        <td class="restaurant-name">余市燒肉吃到飽</td>
+                        <td class="location">余市</td>
+                        <td>約 1 小時 15 分鐘</td>
+                        <td class="food-description">自助式燒肉吃到飽</td>
+                        <td class="price">1,650日幣</td>
+                        <td><span class="category buffet">自助餐</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=1nLxwK36cJ0" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 二世谷 (Niseko) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 二世谷</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">二世谷大阪燒店</td>
+                        <td class="location">二世谷</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">白老和牛牛排、明太子玉子燒、納豆大阪燒</td>
+                        <td class="price">600日幣起</td>
+                        <td><span class="category japanese">日本料理</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=GQOedlTAQBk" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 積丹半島 (Shakotan) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 積丹半島</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">Rinka (林化)</td>
+                        <td class="location">積丹半島島武意海岸</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">海膽丼（紫海膽、馬糞海膽）、鮑魚、烤魚定食</td>
+                        <td class="price">800-8,000日幣</td>
+                        <td><span class="category seafood">海鮮丼/定食</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=9k-lGmVNA-A" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">LeTAO</td>
+                        <td class="location">積丹半島</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">起司蛋糕，口感綿密絲滑</td>
+                        <td class="price">1,500日幣</td>
+                        <td><span class="category dessert">甜點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=9k-lGmVNA-A" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 後田 (Ushiroda) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 後田</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">後田露營區海鮮攤</td>
+                        <td class="location">後田露營區旁</td>
+                        <td>約 2 小時 15 分鐘</td>
+                        <td class="food-description">活扇貝、馬糞海膽、北寄貝</td>
+                        <td class="price">280-1,080日幣</td>
+                        <td><span class="category seafood">生鮮海產</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=BXIOD1tU148" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 伊達市 (Date) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 伊達市</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">伊達市居酒屋</td>
+                        <td class="location">伊達市</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">噴火灣海鮮生魚片：牡丹蝦、北海道鮑魚、北寄貝</td>
+                        <td class="price">非常划算</td>
+                        <td><span class="category seafood">日本料理/海鮮</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=08dP1pr7a2M" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">伊達溫泉飯店餐廳</td>
+                        <td class="location">伊達市</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">日式早餐定食：鮭魚、醃漬小菜、蛋、味噌湯、納豆</td>
+                        <td class="price">15,000多日幣（含住宿）</td>
+                        <td><span class="category hotel">飯店餐點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=08dP1pr7a2M" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 洞爺湖 (Toya-ko) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 洞爺湖</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">洞爺湖北岸湖景餐廳</td>
+                        <td class="location">洞爺湖北岸</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">青紫丼：軟嫩雞肉、蛋、蔥、香菇</td>
+                        <td class="price">900日幣</td>
+                        <td><span class="category japanese">定食</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=1fvYRJR92nw" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">Lekko Hirofong</td>
+                        <td class="location">洞爺湖溫泉街</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">冰淇淋（抹茶、蔓越莓口味）</td>
+                        <td class="price">價格未提及</td>
+                        <td><span class="category dessert">甜點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=1fvYRJR92nw" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">洞爺湖北岸越南餐廳</td>
+                        <td class="location">洞爺湖北岸</td>
+                        <td>約 1 小時 45 分鐘</td>
+                        <td class="food-description">越南雞肉河粉、炸春捲、台灣滷肉飯</td>
+                        <td class="price">價格未提及</td>
+                        <td><span class="category western">亞洲料理</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=FygtGXI6UsE" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 喜多方 (Kitakata) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 喜多方</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">喜多方溫泉飯店</td>
+                        <td class="location">喜多方</td>
+                        <td>約 2 小時</td>
+                        <td class="food-description">兒童自助餐：剉冰、蛋糕；早餐：手作漢堡、拉麵</td>
+                        <td class="price">31,000日幣（含住宿）</td>
+                        <td><span class="category hotel">飯店餐點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=DWRChGUDUL0" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 日高地區 (Hidaka) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 日高地區</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">日高溫泉飯店餐廳</td>
+                        <td class="location">日高地區</td>
+                        <td>約 2 小時 15 分鐘</td>
+                        <td class="food-description">懷石料理：成吉思汗烤肉、蔬菜肉捲、鮭魚沙拉、茶碗蒸</td>
+                        <td class="price">11,000日幣/人（含住宿）</td>
+                        <td><span class="category hotel">飯店餐點/日本料理</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=3SmH-u8OHBI" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                     <tr>
                         <td class="restaurant-name">宇治泉食堂</td>
                         <td class="location">日高</td>
+                        <td>約 2 小時 15 分鐘</td>
                         <td class="food-description">北海道第一蕎麥麵：炸雞、鴨肉蕎麥麵、蝦天婦羅</td>
                         <td class="price">400-1,050日幣</td>
                         <td><span class="category japanese">蕎麥麵/定食</span></td>
                         <td><a href="https://www.youtube.com/watch?v=vgj5UAjz09o" class="youtube-link">觀看影片</a></td>
                     </tr>
+
+                    <!-- 旭川 (Asahikawa) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 旭川</th>
+                    </tr>
                     <tr>
-                        <td class="restaurant-name">森本蛋糕屋</td>
-                        <td class="location">千歲</td>
-                        <td class="food-description">紅豆銅鑼燒、雪珠、哈斯卡普果汁、草莓奶昔</td>
-                        <td class="price">
+                        <td class="restaurant-name">旭川火車站飯店</td>
+                        <td class="location">旭川</td>
+                        <td>約 2 小時 30 分鐘</td>
+                        <td class="food-description">日式早餐：納豆、生雞蛋、海鮮、拉麵、冰淇淋</td>
+                        <td class="price">9,000日幣（含住宿）</td>
+                        <td><span class="category hotel">飯店餐點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">旭川當地居酒屋</td>
+                        <td class="location">旭川市五七小路</td>
+                        <td>約 2 小時 30 分鐘</td>
+                        <td class="food-description">新子燒（烤雞腿）、雞腸、豬肉醃製燒烤</td>
+                        <td class="price">500-1,200日幣</td>
+                        <td><span class="category japanese">居酒屋/燒烤</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">梅光軒拉麵總店</td>
+                        <td class="location">旭川市</td>
+                        <td>約 2 小時 30 分鐘</td>
+                        <td class="food-description">味噌拉麵，湯頭微辣微甜，麵條Q嫩</td>
+                        <td class="price">600日幣</td>
+                        <td><span class="category ramen">拉麵</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=NbRz11C5Q9A" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 上富良野 (Kamifurano) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 上富良野</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">Kaneko Cafe</td>
+                        <td class="location">上富良野</td>
+                        <td>約 2 小時 30 分鐘</td>
+                        <td class="food-description">炭烤豬排、鮪魚三明治、雞肉咖哩、可麗餅</td>
+                        <td class="price">價格未提及</td>
+                        <td><span class="category cafe">定食/咖啡廳</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=L2uQ7-YpX0Y" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 東川町 (Higashikawa-cho) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 東川町</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">東川町貝果店</td>
+                        <td class="location">東川町</td>
+                        <td>約 2 小時 45 分鐘</td>
+                        <td class="food-description">咖啡巧克力貝果，餡料濃郁</td>
+                        <td class="price">價格未提及</td>
+                        <td><span class="category dessert">麵包/甜點</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=H2JNCd2Jp0c" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">東川町咖啡店</td>
+                        <td class="location">東川町</td>
+                        <td>約 2 小時 45 分鐘</td>
+                        <td class="food-description">現煮咖啡、蘋果汁、葡萄汁</td>
+                        <td class="price">500日幣</td>
+                        <td><span class="category cafe">咖啡廳</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=H2JNCd2Jp0c" class="youtube-link">觀看影片</a></td>
+                    </tr>
+                    
+                    <!-- 北見市 (Kitami) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 北見市</th>
+                    </tr>
+                    <tr>
+                        <td class="restaurant-name">味覺園燒肉店</td>
+                        <td class="location">北見市</td>
+                        <td>約 4 小時 30 分鐘</td>
+                        <td class="food-description">燒肉吃到飽，多種肉品、扇貝、冰淇淋</td>
+                        <td class="price">2,600-3,700日幣</td>
+                        <td><span class="category buffet">燒肉/自助餐</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=S_kPs3wd-nw" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                    <!-- 濱小清水 (Hama-koshimizu) -->
+                    <tr class="city-group-header">
+                        <th colspan="7">📍 濱小清水</th>
+                    </tr>
+                     <tr>
+                        <td class="restaurant-name">太郎山拉麵</td>
+                        <td class="location">濱小清水道之驛</td>
+                        <td>約 5 小時</td>
+                        <td class="food-description">辣味拉麵，湯頭濃郁，麵條Q彈</td>
+                        <td class="price">價格未提及</td>
+                        <td><span class="category ramen">拉麵</span></td>
+                        <td><a href="https://www.youtube.com/watch?v=96TlNMevMF8" class="youtube-link">觀看影片</a></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
